@@ -5,483 +5,267 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090b18">
-<title>ViralBoost Pro V1.0</title>
+<title>ViralBoost Pro V1.1</title>
 
 <style>
 :root{
- --bg:#090b18;--panel:#12162a;--panel2:#191e35;
- --purple:#8b5cf6;--blue:#3985ff;--text:#f4f5ff;
- --muted:#9299b5;--border:#292f4b;--green:#22c55e;
+ --bg:#090b18;
+ --panel:#12162a;
+ --panel2:#191e35;
+ --purple:#8b5cf6;
+ --blue:#3b82f6;
+ --text:#f4f4f5;
+ --muted:#9ca3af;
+ --green:#22c55e;
+ --red:#ef4444;
 }
 *{box-sizing:border-box}
 body{
  margin:0;background:var(--bg);color:var(--text);
- font-family:Arial,sans-serif;min-height:100vh;
+ font-family:Arial,sans-serif;
 }
-button,input,select{font:inherit}
-button{cursor:pointer}
-.app{display:flex;min-height:100vh}
-.sidebar{
- width:245px;background:#0d1020;border-right:1px solid var(--border);
- padding:22px 15px;position:fixed;inset:0 auto 0 0;overflow-y:auto;
+header{
+ padding:18px;background:linear-gradient(120deg,#24134c,#101a38);
+ display:flex;justify-content:space-between;align-items:center;
+ border-bottom:1px solid #292e49;
 }
-.brand{display:flex;align-items:center;gap:10px;margin:0 0 30px;padding:0 8px}
-.logo{
- width:43px;height:43px;border-radius:13px;
- background:linear-gradient(135deg,var(--purple),var(--blue));
- display:grid;place-items:center;font-size:23px;font-weight:bold;
-}
-.brand h2{font-size:17px;margin:0}
-.brand small{color:var(--muted);font-size:11px}
-.nav-label{color:var(--muted);font-size:10px;letter-spacing:1.5px;padding:15px 10px 8px}
-.nav-btn{
- display:flex;align-items:center;gap:12px;width:100%;
- background:transparent;border:0;color:var(--muted);
- padding:12px;border-radius:10px;text-align:left;margin:3px 0;
-}
-.nav-btn:hover,.nav-btn.active{
- background:#242044;color:white;
-}
-.nav-btn.active{border-left:3px solid var(--purple)}
-.main{margin-left:245px;width:calc(100% - 245px);padding:25px 30px 90px}
-.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;gap:12px}
-.topbar h2{font-size:19px;margin:0}
-.top-actions{display:flex;gap:9px;align-items:center}
-.icon-btn{
- background:var(--panel);border:1px solid var(--border);
- color:white;border-radius:10px;padding:10px 13px;
-}
-.hero{
- padding:27px;border:1px solid #37305d;border-radius:18px;
- background:linear-gradient(115deg,#21183f,#142747 90%);
- margin-bottom:22px;
-}
-.pill{
- display:inline-block;font-size:10px;letter-spacing:1px;
- color:#d9caff;background:#ffffff13;padding:7px 10px;
- border-radius:20px;margin-bottom:13px;
-}
-.hero h1{font-size:27px;line-height:1.25;margin:0 0 10px}
-.hero p{color:#c0c4dc;font-size:13px;line-height:1.6;margin:0}
-.section-title{font-size:16px;margin:24px 0 13px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.logo{font-size:20px;font-weight:bold}
+.logo span{color:#a78bfa}
+.container{max-width:1100px;margin:auto;padding:16px}
 .card{
- background:var(--panel);border:1px solid var(--border);
- border-radius:14px;padding:17px;min-width:0;
+ background:var(--panel);border:1px solid #292e49;
+ border-radius:15px;padding:17px;margin-bottom:15px;
 }
-.stat-icon{font-size:22px;margin-bottom:12px}
-.stat-label{font-size:12px;color:var(--muted)}
-.stat-value{font-size:23px;font-weight:bold;margin-top:7px}
-.stat-note{font-size:11px;color:var(--muted);margin-top:6px}
-.two-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
-.card h3{font-size:14px;margin:0 0 14px}
-.muted{color:var(--muted);font-size:12px;line-height:1.6}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.action-btn{
- border:0;border-radius:10px;padding:11px 15px;
- color:white;background:linear-gradient(110deg,var(--purple),var(--blue));
- font-weight:bold;font-size:12px;
+h2{font-size:18px;margin:0 0 14px}
+h3{font-size:15px;margin:0 0 10px}
+p{color:var(--muted);font-size:13px;line-height:1.6}
+button{
+ background:var(--purple);color:white;border:0;
+ padding:12px 15px;border-radius:9px;font-weight:bold;
+ cursor:pointer;margin:4px 3px 4px 0;
 }
-.secondary{
- background:var(--panel2);border:1px solid var(--border);
- color:white;border-radius:10px;padding:10px 13px;font-size:12px;
+button.secondary{background:#29314f}
+button.green{background:#15803d}
+button.red{background:#991b1b}
+button:disabled{opacity:.5}
+input,select,textarea{
+ width:100%;padding:12px;margin:6px 0 12px;
+ border-radius:8px;border:1px solid #343b5d;
+ background:#0d1224;color:white;font-size:14px;
 }
-.field{margin:13px 0}
-.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}
-.field input,.field select{
- width:100%;background:#0b0e1d;border:1px solid var(--border);
- border-radius:9px;color:white;padding:12px;outline:none;
+textarea{min-height:90px;resize:vertical}
+label{font-size:13px;color:#c4c7d4}
+nav{
+ display:flex;gap:7px;overflow-x:auto;padding:12px 0;
 }
-.field input:focus,.field select:focus{border-color:var(--purple)}
-.status{
- display:inline-block;padding:5px 9px;border-radius:20px;
- background:#253b30;color:#86efac;font-size:10px;
-}
-.status.off{background:#3b2930;color:#fda4af}
+nav button{white-space:nowrap;background:#202640}
+nav button.active{background:var(--purple)}
 .page{display:none}
 .page.active{display:block}
-.list-item{
- padding:13px 0;border-bottom:1px solid var(--border);
- display:flex;justify-content:space-between;align-items:center;gap:12px;
+.stats{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
 }
-.list-item:last-child{border:0}
-.bottom-nav{display:none}
-.toast{
- position:fixed;bottom:85px;left:50%;transform:translateX(-50%);
- background:#242044;border:1px solid #51418b;color:white;
- padding:12px 17px;border-radius:10px;font-size:12px;
- z-index:99;display:none;max-width:90%;text-align:center;
-}
-.empty{
- text-align:center;padding:28px 12px;color:var(--muted);
- font-size:12px;line-height:1.7;
-}
-@media(max-width:900px){
- .grid{grid-template-columns:repeat(2,1fr)}
- .two-grid{grid-template-columns:1fr}
-}
-@media(max-width:650px){
- .sidebar{display:none}
- .main{margin:0;width:100%;padding:18px 15px 100px}
- .topbar{margin-bottom:18px}
- .hero{padding:22px 18px}
- .hero h1{font-size:23px}
- .grid{gap:9px}
- .card{padding:14px}
- .stat-value{font-size:20px}
- .bottom-nav{
-  display:flex;position:fixed;bottom:0;left:0;right:0;
-  background:#101427;border-top:1px solid var(--border);
-  padding:9px 5px calc(9px + env(safe-area-inset-bottom));
-  z-index:50;justify-content:space-around;
- }
- .bottom-nav button{
-  flex:1;background:none;border:0;color:var(--muted);
-  display:flex;flex-direction:column;align-items:center;
-  gap:5px;font-size:10px;padding:5px 0;
- }
- .bottom-nav button span:first-child{font-size:19px}
- .bottom-nav button.active{color:#c4aaff}
+.stat{background:var(--panel2);padding:14px;border-radius:10px}
+.stat strong{display:block;font-size:21px;margin-top:7px}
+.small{font-size:12px;color:var(--muted)}
+.status{padding:10px;border-radius:8px;background:#202640;margin-top:10px;font-size:13px;white-space:pre-wrap;word-break:break-word}
+.success{color:#86efac}
+.error{color:#fca5a5}
+.video-item{padding:12px;background:var(--panel2);border-radius:9px;margin:8px 0}
+a{color:#a78bfa}
+footer{text-align:center;color:#68708a;padding:25px;font-size:12px}
+@media(min-width:700px){
+ .stats{grid-template-columns:repeat(4,1fr)}
+ .container{padding:24px}
 }
 </style>
 </head>
 
 <body>
-<div class="app">
 
-<aside class="sidebar">
- <div class="brand">
-  <div class="logo">V</div>
-  <div><h2>ViralBoost Pro</h2><small>Creator Workspace</small></div>
- </div>
+<header>
+ <div class="logo">ViralBoost <span>Pro</span></div>
+ <div class="small">V1.1 YouTube Workspace</div>
+</header>
 
- <div class="nav-label">WORKSPACE</div>
- <button class="nav-btn active" data-page="dashboard">🏠 Dashboard</button>
- <button class="nav-btn" data-page="upload">⬆️ Upload Video</button>
- <button class="nav-btn" data-page="videos">🎬 My Videos</button>
- <button class="nav-btn" data-page="ai">✨ AI Studio</button>
- <button class="nav-btn" data-page="viral">🚀 Viral Engine</button>
+<div class="container">
 
- <div class="nav-label">MANAGEMENT</div>
- <button class="nav-btn" data-page="analytics">📊 Analytics</button>
- <button class="nav-btn" data-page="automation">⚙️ Automation</button>
- <button class="nav-btn" data-page="channel">▶️ Channel Manager</button>
- <button class="nav-btn" data-page="settings">🔧 Settings</button>
-</aside>
-
-<main class="main">
- <header class="topbar">
-  <h2 id="pageTitle">Dashboard</h2>
-  <div class="top-actions">
-   <button class="icon-btn" id="languageBtn">ID / EN</button>
-   <button class="icon-btn" id="themeBtn">☀️</button>
-  </div>
- </header>
+<nav>
+ <button class="active" onclick="showPage('dashboard',this)">Dashboard</button>
+ <button onclick="showPage('upload',this)">Upload Video</button>
+ <button onclick="showPage('videos',this)">My Videos</button>
+ <button onclick="showPage('ai',this)">AI Studio</button>
+ <button onclick="showPage('viral',this)">Viral Engine</button>
+ <button onclick="showPage('analytics',this)">Analytics</button>
+ <button onclick="showPage('automation',this)">Automation</button>
+ <button onclick="showPage('settings',this)">Settings</button>
+</nav>
 
 <!-- DASHBOARD -->
-<section class="page active" id="dashboard">
- <div class="hero">
-  <div class="pill">CREATOR WORKSPACE AKTIF</div>
-  <h1>Konten Hebat.<br>Pertumbuhan Lebih Cerdas. 🚀</h1>
-  <p>Kelola channel YouTube, rencanakan konten, dan pantau perkembangan channel dalam satu tempat.</p>
- </div>
-
- <div class="grid">
-  <div class="card"><div class="stat-icon">👁️</div><div class="stat-label">Total Views</div><div class="stat-value">--</div><div class="stat-note">Menunggu koneksi YouTube</div></div>
-  <div class="card"><div class="stat-icon">👥</div><div class="stat-label">Subscribers</div><div class="stat-value">--</div><div class="stat-note">Menunggu koneksi YouTube</div></div>
-  <div class="card"><div class="stat-icon">🎬</div><div class="stat-label">Total Videos</div><div class="stat-value" id="videoCount">0</div><div class="stat-note">Video lokal tersimpan</div></div>
-  <div class="card"><div class="stat-icon">⚡</div><div class="stat-label">Automation</div><div class="stat-value">OFF</div><div class="stat-note">Belum diaktifkan</div></div>
- </div>
-
- <h3 class="section-title">Quick Actions</h3>
- <div class="grid">
-  <div class="card"><div class="stat-icon">⬆️</div><h3>Upload Video</h3><p class="muted">Siapkan video baru untuk channel.</p><button class="action-btn" onclick="showPage('upload')">Mulai Upload</button></div>
-  <div class="card"><div class="stat-icon">✨</div><h3>AI Studio</h3><p class="muted">Buat ide dan konsep konten.</p><button class="action-btn" onclick="showPage('ai')">Buka AI Studio</button></div>
-  <div class="card"><div class="stat-icon">📊</div><h3>Analytics</h3><p class="muted">Pantau performa konten.</p><button class="action-btn" onclick="showPage('analytics')">Lihat Statistik</button></div>
-  <div class="card"><div class="stat-icon">▶️</div><h3>Channel</h3><p class="muted">Hubungkan akun YouTube.</p><button class="action-btn" onclick="showPage('channel')">Kelola Channel</button></div>
- </div>
-
- <h3 class="section-title">System Status</h3>
+<section id="dashboard" class="page active">
  <div class="card">
-  <div class="list-item"><span class="muted">Firebase SDK</span><span class="status off" id="firebaseStatus">Memuat...</span></div>
-  <div class="list-item"><span class="muted">Google Authentication</span><span class="status off" id="authStatus">Belum login</span></div>
-  <div class="list-item"><span class="muted">YouTube API</span><span class="status off">Belum terhubung</span></div>
+  <h2>Selamat datang di ViralBoost Pro</h2>
+  <p>Workspace untuk mengelola channel, menyiapkan video, dan mengunggah konten YouTube.</p>
+  <button onclick="connectYouTube()">Hubungkan YouTube</button>
+  <button class="secondary" onclick="loadChannel()">Perbarui Channel</button>
+  <div id="mainStatus" class="status">YouTube belum terhubung.</div>
+ </div>
+
+ <div class="card">
+  <h2>Statistik Channel</h2>
+  <div class="stats">
+   <div class="stat"><span class="small">Nama Channel</span><strong id="channelName">-</strong></div>
+   <div class="stat"><span class="small">Subscribers</span><strong id="subCount">-</strong></div>
+   <div class="stat"><span class="small">Total Views</span><strong id="viewCount">-</strong></div>
+   <div class="stat"><span class="small">Jumlah Video</span><strong id="videoCount">-</strong></div>
+  </div>
+ </div>
+
+ <div class="card">
+  <h2>Akun Aplikasi</h2>
+  <div id="firebaseStatus" class="status">Memeriksa koneksi Firebase...</div>
+  <button onclick="loginFirebase()">Login Google Aplikasi</button>
+  <button class="secondary" onclick="logoutFirebase()">Keluar</button>
  </div>
 </section>
 
 <!-- UPLOAD -->
-<section class="page" id="upload">
+<section id="upload" class="page">
  <div class="card">
-  <h3>Upload Video</h3>
-  <p class="muted">Pilih video dari perangkat Android untuk menyiapkan proses upload.</p>
-  <div class="field"><label>Pilih File Video</label><input type="file" id="videoFile" accept="video/*"></div>
-  <div class="field"><label>Judul Video</label><input id="videoTitle" placeholder="Masukkan judul video"></div>
-  <div class="field"><label>Deskripsi</label><input id="videoDescription" placeholder="Deskripsi video"></div>
-  <div class="field"><label>Jenis Konten</label><select id="videoType"><option>Video Panjang</option><option>YouTube Shorts</option></select></div>
-  <div class="field"><label>Privasi</label><select id="videoPrivacy"><option>Private</option><option>Unlisted</option><option>Public</option></select></div>
-  <button class="action-btn" onclick="prepareVideo()">Simpan Persiapan Video</button>
-  <p class="muted">Catatan: tombol ini menyimpan data persiapan di perangkat, bukan mengunggah ke YouTube. Upload YouTube memerlukan OAuth dan YouTube Data API.</p>
+  <h2>Upload Video YouTube</h2>
+  <p>Pilih video dari HP, isi informasi video, lalu unggah ke channel YouTube yang terhubung.</p>
+
+  <label>File Video</label>
+  <input type="file" id="videoFile" accept="video/*">
+
+  <label>Judul Video</label>
+  <input id="videoTitle" type="text" placeholder="Masukkan judul video">
+
+  <label>Deskripsi</label>
+  <textarea id="videoDescription" placeholder="Tulis deskripsi video"></textarea>
+
+  <label>Tag Video (pisahkan dengan koma)</label>
+  <input id="videoTags" type="text" placeholder="contoh: tutorial, hiburan, shorts">
+
+  <label>Kategori</label>
+  <select id="videoCategory">
+   <option value="22">People & Blogs</option>
+   <option value="24">Entertainment</option>
+   <option value="20">Gaming</option>
+   <option value="27">Education</option>
+   <option value="26">Howto & Style</option>
+   <option value="10">Music</option>
+   <option value="28">Science & Technology</option>
+  </select>
+
+  <label>Privasi</label>
+  <select id="videoPrivacy">
+   <option value="private">Private</option>
+   <option value="unlisted">Unlisted</option>
+   <option value="public">Public</option>
+  </select>
+
+  <label>Thumbnail (opsional)</label>
+  <input type="file" id="videoThumbnail" accept="image/*">
+
+  <button class="green" id="uploadBtn" onclick="uploadVideo()">Mulai Upload</button>
+  <div id="uploadStatus" class="status">Siap mengunggah.</div>
  </div>
 </section>
 
 <!-- VIDEOS -->
-<section class="page" id="videos">
+<section id="videos" class="page">
  <div class="card">
-  <div class="row"><h3>My Videos</h3><span class="status" id="myVideoCount">0 video</span></div>
-  <div id="videoList" class="empty">Belum ada video yang disiapkan.</div>
+  <h2>Riwayat Upload</h2>
+  <p>Riwayat upload yang tersimpan di browser perangkat ini.</p>
+  <div id="historyList">Belum ada riwayat upload.</div>
+  <button class="secondary" onclick="showHistory()">Muat Ulang Riwayat</button>
  </div>
 </section>
 
-<!-- AI -->
-<section class="page" id="ai">
+<!-- AI STUDIO -->
+<section id="ai" class="page">
  <div class="card">
-  <h3>AI Studio</h3>
-  <p class="muted">Ruang kerja bantuan ide konten YouTube.</p>
-  <div class="field"><label>Topik Konten</label><input id="aiTopic" placeholder="Contoh: fakta menarik dunia"></div>
-  <div class="field"><label>Jenis Konten</label><select id="aiType"><option>Ide Video Panjang</option><option>Ide YouTube Shorts</option><option>Judul Video</option><option>Deskripsi Video</option></select></div>
-  <button class="action-btn" onclick="generateIdea()">Buat Ide Konten</button>
-  <div class="field"><label>Hasil</label><textarea id="aiResult" rows="8" style="width:100%;background:#0b0e1d;color:white;border:1px solid var(--border);border-radius:9px;padding:12px" placeholder="Hasil ide konten akan muncul di sini..."></textarea></div>
+  <h2>AI Studio</h2>
+  <p>Alat bantu membuat ide dan kerangka konten. Fitur ini belum terhubung ke layanan AI eksternal.</p>
+  <label>Topik Video</label>
+  <input id="aiTopic" placeholder="Masukkan topik video">
+  <label>Jenis Konten</label>
+  <select id="aiType">
+   <option>Tutorial</option>
+   <option>Hiburan</option>
+   <option>Edukasi</option>
+   <option>Review</option>
+   <option>Shorts</option>
+  </select>
+  <button onclick="generateIdea()">Buat Kerangka Konten</button>
+  <textarea id="aiResult" placeholder="Hasil kerangka konten akan muncul di sini"></textarea>
  </div>
 </section>
 
-<!-- VIRAL -->
-<section class="page" id="viral">
+<!-- VIRAL ENGINE -->
+<section id="viral" class="page">
  <div class="card">
-  <h3>Viral Engine</h3>
-  <p class="muted">Ruang perencanaan strategi pertumbuhan konten.</p>
-  <div class="list-item"><span>Riset ide konten</span><span class="status">Perencanaan</span></div>
-  <div class="list-item"><span>Optimasi judul dan deskripsi</span><span class="status">Perencanaan</span></div>
-  <div class="list-item"><span>Evaluasi performa</span><span class="status">Menunggu API</span></div>
-  <p class="muted">Fitur analisis otomatis akan diaktifkan setelah sumber data dan backend terhubung.</p>
+  <h2>Viral Engine</h2>
+  <p>Generator ide judul dan hashtag sederhana. Hasilnya merupakan saran, bukan jaminan video menjadi viral.</p>
+  <label>Topik Video</label>
+  <input id="viralTopic" placeholder="Contoh: tips membuat video">
+  <button onclick="generateViral()">Buat Rekomendasi</button>
+  <textarea id="viralResult" placeholder="Rekomendasi judul dan hashtag"></textarea>
  </div>
 </section>
 
 <!-- ANALYTICS -->
-<section class="page" id="analytics">
+<section id="analytics" class="page">
  <div class="card">
-  <h3>Channel Analytics</h3>
-  <div class="empty">Data analytics YouTube belum tersedia.<br>Hubungkan channel dan aktifkan YouTube Data API untuk mengambil statistik asli.</div>
-  <button class="action-btn" onclick="showPage('channel')">Hubungkan Channel</button>
+  <h2>Analytics</h2>
+  <p>Data statistik channel yang dapat dibaca melalui YouTube Data API.</p>
+  <button onclick="loadChannel()">Ambil Statistik Terbaru</button>
+  <div id="analyticsStatus" class="status">Belum ada data statistik.</div>
  </div>
 </section>
 
 <!-- AUTOMATION -->
-<section class="page" id="automation">
+<section id="automation" class="page">
  <div class="card">
-  <h3>Automation Center</h3>
-  <p class="muted">Pengaturan alur kerja otomatis untuk channel YouTube.</p>
-  <div class="list-item"><span>Jadwal upload</span><span class="status off">Belum aktif</span></div>
-  <div class="list-item"><span>Pengelolaan metadata</span><span class="status off">Belum aktif</span></div>
-  <div class="list-item"><span>Pemantauan channel</span><span class="status off">Belum aktif</span></div>
-  <p class="muted">Otomatisasi memerlukan backend dan izin API yang sesuai.</p>
- </div>
-</section>
-
-<!-- CHANNEL -->
-<section class="page" id="channel">
- <div class="card">
-  <h3>Channel Manager</h3>
-  <div class="list-item"><span class="muted">Status Channel YouTube</span><span class="status off">Belum terhubung</span></div>
-  <p class="muted">Login Google Firebase dan izin akses YouTube adalah dua proses berbeda. Login Firebase tidak otomatis memberikan akses ke channel YouTube.</p>
-  <button class="action-btn" onclick="connectYouTube()">Hubungkan YouTube</button>
-  <p class="muted" id="youtubeMessage">Integrasi YouTube OAuth belum dipasang.</p>
+  <h2>Automation Center</h2>
+  <p>Pengaturan otomatisasi masih berupa persiapan. Aplikasi belum menjalankan upload terjadwal di latar belakang.</p>
+  <label>Nama Tugas</label>
+  <input id="taskName" placeholder="Contoh: Siapkan video Shorts">
+  <label>Catatan</label>
+  <textarea id="taskNote" placeholder="Tuliskan rencana tugas"></textarea>
+  <button onclick="saveTask()">Simpan Rencana</button>
+  <div id="taskStatus" class="status">Belum ada tugas.</div>
  </div>
 </section>
 
 <!-- SETTINGS -->
-<section class="page" id="settings">
+<section id="settings" class="page">
  <div class="card">
-  <h3>Settings</h3>
-  <div class="field"><label>Bahasa</label><select id="languageSelect"><option value="id">Bahasa Indonesia</option><option value="en">English</option></select></div>
-  <div class="field"><label>Tampilan</label><select id="themeSelect"><option value="dark">Dark Mode</option><option value="light">White Mode</option></select></div>
-  <button class="action-btn" onclick="saveSettings()">Simpan Pengaturan</button>
- </div>
-
- <div class="card" style="margin-top:15px">
-  <h3>Firebase Account</h3>
-  <p class="muted" id="accountInfo">Belum login.</p>
-  <button class="action-btn" id="loginBtn" onclick="firebaseLogin()">Login dengan Google</button>
-  <button class="secondary" id="logoutBtn" onclick="firebaseLogout()" style="display:none">Logout</button>
-  <p class="muted">Login ini menggunakan Google Authentication Firebase, bukan izin YouTube.</p>
- </div>
-
- <div class="card" style="margin-top:15px">
-  <h3>Database Connection Test</h3>
-  <p class="muted">Tes penyimpanan dokumen profil pengguna di Firestore.</p>
-  <button class="action-btn" onclick="testFirestore()">Tes Firestore</button>
-  <p class="muted" id="databaseMessage">Menunggu login Firebase.</p>
+  <h2>Pengaturan</h2>
+  <p>Pengaturan koneksi aplikasi dan YouTube.</p>
+  <div id="settingsStatus" class="status">Client ID Google sudah dipasang di kode.</div>
+  <button onclick="connectYouTube()">Hubungkan / Sambungkan Ulang YouTube</button>
+  <button class="secondary" onclick="disconnectYouTube()">Putuskan Koneksi YouTube</button>
+  <button class="secondary" onclick="logoutFirebase()">Keluar dari Akun Aplikasi</button>
  </div>
 </section>
 
-</main>
 </div>
 
-<nav class="bottom-nav">
- <button class="active" data-page="dashboard"><span>⌂</span>Home</button>
- <button data-page="upload"><span>＋</span>Upload</button>
- <button data-page="ai"><span>✦</span>AI Studio</button>
- <button data-page="analytics"><span>▥</span>Analytics</button>
- <button data-page="settings"><span>⚙</span>Settings</button>
-</nav>
-
-<div class="toast" id="toast"></div>
-
-<script>
-const titles={
- dashboard:"Dashboard",upload:"Upload Video",videos:"My Videos",
- ai:"AI Studio",viral:"Viral Engine",analytics:"Analytics",
- automation:"Automation",channel:"Channel Manager",settings:"Settings"
-};
-
-function toast(message){
- const el=document.getElementById("toast");
- el.textContent=message;el.style.display="block";
- clearTimeout(window.toastTimer);
- window.toastTimer=setTimeout(()=>el.style.display="none",2800);
-}
-window.toast=toast;
-
-function showPage(page){
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- document.querySelectorAll("[data-page]").forEach(b=>b.classList.remove("active"));
- const target=document.getElementById(page);
- if(target)target.classList.add("active");
- document.querySelectorAll('[data-page="'+page+'"]').forEach(b=>b.classList.add("active"));
- document.getElementById("pageTitle").textContent=titles[page]||"Dashboard";
- window.scrollTo(0,0);
-}
-window.showPage=showPage;
-
-document.querySelectorAll("[data-page]").forEach(btn=>{
- btn.addEventListener("click",()=>showPage(btn.dataset.page));
-});
-
-let savedVideos=JSON.parse(localStorage.getItem("vbVideos")||"[]");
-
-function renderVideos(){
- const list=document.getElementById("videoList");
- document.getElementById("videoCount").textContent=savedVideos.length;
- document.getElementById("myVideoCount").textContent=savedVideos.length+" video";
- if(!savedVideos.length){
-  list.className="empty";list.textContent="Belum ada video yang disiapkan.";return;
- }
- list.className="";
- list.innerHTML="";
- savedVideos.forEach((v,i)=>{
-  const item=document.createElement("div");
-  item.className="list-item";
-  const info=document.createElement("div");
-  const title=document.createElement("strong");
-  title.textContent=v.title;
-  const desc=document.createElement("div");
-  desc.className="muted";
-  desc.textContent=v.type+" • "+v.privacy+" • "+v.file;
-  info.append(title,desc);
-  const del=document.createElement("button");
-  del.className="secondary";del.textContent="Hapus";
-  del.onclick=()=>deleteVideo(i);
-  item.append(info,del);list.append(item);
- });
-}
-
-function prepareVideo(){
- const file=document.getElementById("videoFile").files[0];
- const title=document.getElementById("videoTitle").value.trim();
- if(!file||!title){toast("Pilih video dan isi judul terlebih dahulu.");return;}
- savedVideos.unshift({
-  title:title,
-  file:file.name,
-  type:document.getElementById("videoType").value,
-  privacy:document.getElementById("videoPrivacy").value,
-  description:document.getElementById("videoDescription").value
- });
- localStorage.setItem("vbVideos",JSON.stringify(savedVideos));
- renderVideos();
- toast("Persiapan video berhasil disimpan.");
-}
-function deleteVideo(index){
- savedVideos.splice(index,1);
- localStorage.setItem("vbVideos",JSON.stringify(savedVideos));
- renderVideos();toast("Data video dihapus.");
-}
-window.prepareVideo=prepareVideo;
-window.deleteVideo=deleteVideo;
-
-function generateIdea(){
- const topic=document.getElementById("aiTopic").value.trim();
- const type=document.getElementById("aiType").value;
- if(!topic){toast("Masukkan topik konten terlebih dahulu.");return;}
- document.getElementById("aiResult").value=
- "TOPIK: "+topic+"\nJENIS: "+type+
- "\n\n1. Tentukan target penonton.\n"+
- "2. Buat pembukaan yang menarik perhatian.\n"+
- "3. Sampaikan informasi utama secara jelas.\n"+
- "4. Tambahkan contoh atau cerita pendukung.\n"+
- "5. Akhiri dengan ajakan berinteraksi.\n\n"+
- "Catatan: Ini kerangka ide awal. AI generatif belum terhubung.";
-}
-window.generateIdea=generateIdea;
-
-function connectYouTube(){
- document.getElementById("youtubeMessage").textContent=
- "YouTube OAuth belum dikonfigurasi. Kita akan menghubungkannya melalui Google Cloud dan YouTube Data API pada tahap berikutnya.";
- toast("Integrasi YouTube belum diaktifkan.");
-}
-window.connectYouTube=connectYouTube;
-
-let currentTheme=localStorage.getItem("vbTheme")||"dark";
-function applyTheme(){
- if(currentTheme==="light"){
-  document.documentElement.style.setProperty("--bg","#f3f5fb");
-  document.documentElement.style.setProperty("--panel","#ffffff");
-  document.documentElement.style.setProperty("--panel2","#edf0fa");
-  document.documentElement.style.setProperty("--text","#171a2b");
-  document.documentElement.style.setProperty("--muted","#68708a");
-  document.documentElement.style.setProperty("--border","#dce0ec");
-  document.querySelectorAll(".sidebar,.bottom-nav").forEach(e=>e.style.background="#fff");
-  document.querySelectorAll(".field input,.field select").forEach(e=>{e.style.background="#fff";e.style.color="#171a2b"});
- }else{
-  location.reload();
- }
-}
-function saveSettings(){
- const theme=document.getElementById("themeSelect").value;
- const lang=document.getElementById("languageSelect").value;
- localStorage.setItem("vbTheme",theme);
- localStorage.setItem("vbLanguage",lang);
- currentTheme=theme;
- toast("Pengaturan disimpan.");
- if(theme!== "dark")applyTheme();
-}
-document.getElementById("themeBtn").onclick=()=>{
- currentTheme=currentTheme==="dark"?"light":"dark";
- localStorage.setItem("vbTheme",currentTheme);
- location.reload();
-};
-document.getElementById("themeSelect").value=currentTheme;
-document.getElementById("languageSelect").value=localStorage.getItem("vbLanguage")||"id";
-if(currentTheme==="light")applyTheme();
-
-document.getElementById("languageBtn").onclick=()=>{
- const next=(localStorage.getItem("vbLanguage")||"id")==="id"?"en":"id";
- localStorage.setItem("vbLanguage",next);
- document.getElementById("languageSelect").value=next;
- toast(next==="en"?"Language preference set to English.":"Bahasa Indonesia dipilih.");
-};
-
-renderVideos();
-</script>
+<footer>ViralBoost Pro V1.1 · YouTube Creator Workspace</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {
- getAuth,GoogleAuthProvider,signInWithPopup,
- onAuthStateChanged,signOut
+ getAuth, GoogleAuthProvider, signInWithPopup, signOut,
+ onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import {
- getFirestore,doc,setDoc,getDoc,serverTimestamp
+ getFirestore, doc, setDoc, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
+/* FIREBASE CONFIG */
 const firebaseConfig={
  apiKey:"AIzaSyBEdu-jucfPEq3l2Or3Bx12dJJwV7Zx_v8",
  authDomain:"viralboost-pro-de8c6.firebaseapp.com",
@@ -491,97 +275,362 @@ const firebaseConfig={
  appId:"1:895999716903:web:738c8a501b118005df2802"
 };
 
-let auth=null;
-let db=null;
-let currentUser=null;
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
 
-try{
- const app=initializeApp(firebaseConfig);
- auth=getAuth(app);
- db=getFirestore(app);
+let firebaseUser=null;
 
- window.vbFirebase={app,auth,db};
+onAuthStateChanged(auth,user=>{
+ firebaseUser=user;
+ const box=document.getElementById("firebaseStatus");
+ if(user){
+  box.innerHTML="Login berhasil: "+escapeHTML(user.email||user.displayName||"Pengguna");
+ }else{
+  box.textContent="Belum login ke akun aplikasi Firebase.";
+ }
+});
 
- document.getElementById("firebaseStatus").textContent="SDK Siap";
- document.getElementById("firebaseStatus").classList.remove("off");
- toast("Firebase SDK berhasil diinisialisasi.");
+window.loginFirebase=async function(){
+ try{
+  const provider=new GoogleAuthProvider();
+  const result=await signInWithPopup(auth,provider);
+  firebaseUser=result.user;
+  document.getElementById("firebaseStatus").textContent=
+   "Login berhasil: "+(result.user.email||"");
+ }catch(e){
+  document.getElementById("firebaseStatus").textContent="Login gagal: "+e.message;
+ }
+};
 
- const provider=new GoogleAuthProvider();
- provider.setCustomParameters({prompt:"select_account"});
+window.logoutFirebase=async function(){
+ try{
+  await signOut(auth);
+  document.getElementById("firebaseStatus").textContent="Berhasil keluar.";
+ }catch(e){
+  document.getElementById("firebaseStatus").textContent=e.message;
+ }
+};
 
- window.firebaseLogin=async function(){
-  try{
-   await signInWithPopup(auth,provider);
-  }catch(error){
-   console.error(error);
-   toast("Login gagal: "+error.message);
-  }
- };
+/* GOOGLE YOUTUBE OAUTH */
+const YOUTUBE_CLIENT_ID=
+"895999716903-caj6c2hb9tdkc7jjd83i54bbo279ts4u.apps.googleusercontent.com";
 
- window.firebaseLogout=async function(){
-  try{
-   await signOut(auth);
-   toast("Berhasil logout.");
-  }catch(error){
-   toast("Logout gagal: "+error.message);
-  }
- };
+const YOUTUBE_SCOPES=[
+ "https://www.googleapis.com/auth/youtube.readonly",
+ "https://www.googleapis.com/auth/youtube.upload"
+].join(" ");
 
- onAuthStateChanged(auth,user=>{
-  currentUser=user;
-  const loginBtn=document.getElementById("loginBtn");
-  const logoutBtn=document.getElementById("logoutBtn");
-  const accountInfo=document.getElementById("accountInfo");
-  const authStatus=document.getElementById("authStatus");
+let tokenClient=null;
+let youtubeToken=null;
+let channelData=null;
 
-  if(user){
-   loginBtn.style.display="none";
-   logoutBtn.style.display="inline-block";
-   accountInfo.textContent="Login sebagai: "+(user.email||user.displayName||user.uid);
-   authStatus.textContent="Login aktif";
-   authStatus.classList.remove("off");
-  }else{
-   loginBtn.style.display="inline-block";
-   logoutBtn.style.display="none";
-   accountInfo.textContent="Belum login.";
-   authStatus.textContent="Belum login";
-   authStatus.classList.add("off");
+function setMainStatus(message,isError=false){
+ const el=document.getElementById("mainStatus");
+ el.textContent=message;
+ el.className="status "+(isError?"error":"success");
+}
+
+function initGoogle(){
+ if(!window.google || !google.accounts || !google.accounts.oauth2){
+  setMainStatus("Layanan Google belum siap. Periksa koneksi internet lalu muat ulang halaman.",true);
+  return false;
+ }
+ if(!tokenClient){
+  tokenClient=google.accounts.oauth2.initTokenClient({
+   client_id:YOUTUBE_CLIENT_ID,
+   scope:YOUTUBE_SCOPES,
+   callback:async response=>{
+    if(response.error){
+     setMainStatus("Google OAuth gagal: "+response.error,true);
+     return;
+    }
+    youtubeToken=response.access_token;
+    setMainStatus("YouTube berhasil dihubungkan. Mengambil data channel...");
+    await loadChannel();
+   }
+  });
+ }
+ return true;
+}
+
+window.connectYouTube=function(){
+ if(!initGoogle())return;
+ tokenClient.requestAccessToken({prompt:"consent"});
+};
+
+function requireToken(){
+ if(!youtubeToken){
+  alert("Hubungkan YouTube terlebih dahulu.");
+  return false;
+ }
+ return true;
+}
+
+async function youtubeRequest(url,options={}){
+ const response=await fetch(url,{
+  ...options,
+  headers:{
+   ...(options.headers||{}),
+   Authorization:"Bearer "+youtubeToken
   }
  });
+ if(!response.ok){
+  const message=await response.text();
+  throw new Error("YouTube API "+response.status+": "+message);
+ }
+ return response;
+}
 
- window.testFirestore=async function(){
-  const output=document.getElementById("databaseMessage");
-  if(!currentUser){
-   output.textContent="Silakan login Google terlebih dahulu.";
-   toast("Login terlebih dahulu.");
+window.loadChannel=async function(){
+ if(!requireToken())return;
+ try{
+  const response=await youtubeRequest(
+   "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&mine=true"
+  );
+  const data=await response.json();
+  if(!data.items || !data.items.length){
+   setMainStatus("Channel YouTube tidak ditemukan.",true);
    return;
   }
-  try{
-   const userRef=doc(db,"users",currentUser.uid);
-   await setDoc(userRef,{
-    email:currentUser.email||"",
-    displayName:currentUser.displayName||"",
-    lastTest:serverTimestamp()
-   },{merge:true});
+  channelData=data.items[0];
+  const snippet=channelData.snippet||{};
+  const stats=channelData.statistics||{};
 
-   const snapshot=await getDoc(userRef);
-   output.textContent=snapshot.exists()
-    ?"Berhasil! Data profil berhasil ditulis dan dibaca dari Firestore."
-    :"Dokumen belum ditemukan.";
-   toast("Tes Firestore berhasil!");
-  }catch(error){
-   console.error(error);
-   output.textContent="Tes Firestore gagal: "+error.message;
-   toast("Firestore gagal. Periksa Rules dan koneksi.");
+  document.getElementById("channelName").textContent=snippet.title||"-";
+  document.getElementById("subCount").textContent=
+   Number(stats.subscriberCount||0).toLocaleString("id-ID");
+  document.getElementById("viewCount").textContent=
+   Number(stats.viewCount||0).toLocaleString("id-ID");
+  document.getElementById("videoCount").textContent=
+   Number(stats.videoCount||0).toLocaleString("id-ID");
+
+  const message="Terhubung ke channel: "+(snippet.title||"YouTube");
+  setMainStatus(message);
+  document.getElementById("analyticsStatus").textContent=
+   "Channel: "+(snippet.title||"-")+
+   "\nSubscribers: "+Number(stats.subscriberCount||0).toLocaleString("id-ID")+
+   "\nViews: "+Number(stats.viewCount||0).toLocaleString("id-ID")+
+   "\nVideo: "+Number(stats.videoCount||0).toLocaleString("id-ID");
+ }catch(e){
+  setMainStatus("Gagal mengambil channel: "+e.message,true);
+  document.getElementById("analyticsStatus").textContent=e.message;
+ }
+};
+
+window.disconnectYouTube=function(){
+ youtubeToken=null;
+ channelData=null;
+ document.getElementById("channelName").textContent="-";
+ document.getElementById("subCount").textContent="-";
+ document.getElementById("viewCount").textContent="-";
+ document.getElementById("videoCount").textContent="-";
+ setMainStatus("Koneksi YouTube diputus. Hubungkan kembali jika ingin menggunakan fitur YouTube.");
+};
+
+/* VIDEO UPLOAD */
+window.uploadVideo=async function(){
+ if(!requireToken())return;
+
+ const file=document.getElementById("videoFile").files[0];
+ const title=document.getElementById("videoTitle").value.trim();
+ const description=document.getElementById("videoDescription").value.trim();
+ const tagsText=document.getElementById("videoTags").value;
+ const categoryId=document.getElementById("videoCategory").value;
+ const privacyStatus=document.getElementById("videoPrivacy").value;
+ const button=document.getElementById("uploadBtn");
+ const status=document.getElementById("uploadStatus");
+
+ if(!file){alert("Pilih file video terlebih dahulu.");return;}
+ if(!title){alert("Isi judul video terlebih dahulu.");return;}
+
+ button.disabled=true;
+ status.textContent="Menyiapkan upload...";
+
+ try{
+  const metadata={
+   snippet:{
+    title:title,
+    description:description,
+    categoryId:categoryId,
+    tags:tagsText.split(",").map(t=>t.trim()).filter(Boolean)
+   },
+   status:{privacyStatus:privacyStatus}
+  };
+
+  /* Mulai sesi upload resumable */
+  const startResponse=await youtubeRequest(
+   "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
+   {
+    method:"POST",
+    headers:{
+     "Content-Type":"application/json; charset=UTF-8",
+     "X-Upload-Content-Length":String(file.size),
+     "X-Upload-Content-Type":file.type||"application/octet-stream"
+    },
+    body:JSON.stringify(metadata)
+   }
+  );
+
+  const uploadUrl=startResponse.headers.get("Location");
+  if(!uploadUrl){
+   throw new Error("Alamat upload tidak diterima dari YouTube.");
   }
- };
 
-}catch(error){
- console.error("Firebase initialization error:",error);
- document.getElementById("firebaseStatus").textContent="Gagal";
- document.getElementById("firebaseStatus").classList.add("off");
- toast("Firebase gagal dimuat. Periksa koneksi internet.");
+  status.textContent="Mengunggah video ke YouTube. Mohon tunggu...";
+  const uploadResponse=await fetch(uploadUrl,{
+   method:"PUT",
+   headers:{"Content-Type":file.type||"application/octet-stream"},
+   body:file
+  });
+
+  if(!uploadResponse.ok){
+   const err=await uploadResponse.text();
+   throw new Error("Upload gagal: "+uploadResponse.status+" "+err);
+  }
+
+  const result=await uploadResponse.json();
+  const videoId=result.id;
+  const videoUrl="https://www.youtube.com/watch?v="+videoId;
+
+  saveHistory({
+   id:videoId,
+   title:title,
+   url:videoUrl,
+   date:new Date().toLocaleString("id-ID")
+  });
+
+  status.innerHTML="Upload berhasil!\nVideo: "+escapeHTML(title)+
+   "\nTautan: "+videoUrl;
+
+  const thumb=document.getElementById("videoThumbnail").files[0];
+  if(thumb){
+   status.textContent+="\nCatatan: Thumbnail dipilih, tetapi pemasangan thumbnail khusus belum dijalankan.";
+  }
+
+  showHistory();
+
+ }catch(e){
+  status.textContent="Terjadi kesalahan: "+e.message+
+   "\nJika upload gagal, coba hubungkan ulang YouTube dan periksa izin aplikasi.";
+ }finally{
+  button.disabled=false;
+ }
+};
+
+/* LOCAL UPLOAD HISTORY */
+function getHistory(){
+ try{return JSON.parse(localStorage.getItem("vb_upload_history")||"[]");}
+ catch(e){return [];}
 }
+function saveHistory(item){
+ const list=getHistory();
+ list.unshift(item);
+ localStorage.setItem("vb_upload_history",JSON.stringify(list.slice(0,50)));
+}
+window.showHistory=function(){
+ const list=getHistory();
+ const box=document.getElementById("historyList");
+ if(!list.length){
+  box.textContent="Belum ada riwayat upload.";
+  return;
+ }
+ box.innerHTML="";
+ list.forEach(item=>{
+  const div=document.createElement("div");
+  div.className="video-item";
+  const title=document.createElement("strong");
+  title.textContent=item.title;
+  const date=document.createElement("div");
+  date.className="small";
+  date.textContent=item.date;
+  const link=document.createElement("a");
+  link.href=item.url;
+  link.target="_blank";
+  link.rel="noopener";
+  link.textContent="Buka Video";
+  div.append(title,date,link);
+  box.appendChild(div);
+ });
+};
+
+/* AI STUDIO - TEMPLATE */
+window.generateIdea=function(){
+ const topic=document.getElementById("aiTopic").value.trim();
+ const type=document.getElementById("aiType").value;
+ if(!topic){alert("Isi topik terlebih dahulu.");return;}
+ document.getElementById("aiResult").value=
+ "JUDUL SEMENTARA:\n"+topic+
+ "\n\nJENIS KONTEN: "+type+
+ "\n\nPEMBUKA:\nMulai dengan pertanyaan atau fakta menarik tentang "+topic+
+ "\n\nISI:\n1. Perkenalkan topik.\n2. Jelaskan poin utama.\n3. Berikan contoh.\n4. Sampaikan kesimpulan."+
+ "\n\nPENUTUP:\nAjak penonton berkomentar dan berlangganan channel.";
+};
+
+/* VIRAL ENGINE - TEMPLATE */
+window.generateViral=function(){
+ const topic=document.getElementById("viralTopic").value.trim();
+ if(!topic){alert("Masukkan topik video.");return;}
+ document.getElementById("viralResult").value=
+ "IDE JUDUL:\n"+
+ "1. Hal yang Perlu Kamu Ketahui tentang "+topic+
+ "\n2. Cara Memahami "+topic+
+ "\n3. Jangan Lewatkan Tips "+topic+
+ "\n\nHASHTAG:\n#"+topic.replace(/\s+/g,"")+
+ " #YouTube #Tips #Indonesia #Shorts"+
+ "\n\nCatatan: Sesuaikan judul dan hashtag dengan isi video.";
+};
+
+/* AUTOMATION - LOCAL NOTES */
+window.saveTask=function(){
+ const name=document.getElementById("taskName").value.trim();
+ const note=document.getElementById("taskNote").value.trim();
+ if(!name){alert("Isi nama tugas.");return;}
+ const tasks=JSON.parse(localStorage.getItem("vb_tasks")||"[]");
+ tasks.push({name,note,date:new Date().toLocaleString("id-ID")});
+ localStorage.setItem("vb_tasks",JSON.stringify(tasks));
+ document.getElementById("taskStatus").textContent=
+  "Rencana tersimpan di perangkat:\n"+name+"\n"+note;
+};
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,char=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[char]));
+}
+
+/* SAVE CHANNEL DATA WHEN FIREBASE LOGIN EXISTS */
+async function saveChannelToFirebase(){
+ if(!firebaseUser||!channelData)return;
+ try{
+  await setDoc(doc(db,"users",firebaseUser.uid),{
+   channelName:channelData.snippet?.title||"",
+   channelId:channelData.id||"",
+   updatedAt:serverTimestamp()
+  },{merge:true});
+ }catch(e){
+  console.log("Data channel belum tersimpan:",e.message);
+ }
+}
+
+/* NAVIGATION */
+window.showPage=function(page,button){
+ document.querySelectorAll(".page").forEach(el=>el.classList.remove("active"));
+ document.querySelectorAll("nav button").forEach(el=>el.classList.remove("active"));
+ document.getElementById(page).classList.add("active");
+ if(button)button.classList.add("active");
+ if(page==="videos")showHistory();
+};
+
+/* Google Identity Services loader */
+const googleScript=document.createElement("script");
+googleScript.src="https://accounts.google.com/gsi/client";
+googleScript.async=true;
+googleScript.defer=true;
+googleScript.onload=()=>setMainStatus("Aplikasi siap. Hubungkan akun YouTube untuk memulai.");
+googleScript.onerror=()=>setMainStatus("Gagal memuat layanan Google. Periksa koneksi internet.",true);
+document.head.appendChild(googleScript);
+
 </script>
 </body>
 </html>
